@@ -34,6 +34,8 @@ namespace DesmosApp
                     throw new Exception("Invalid Operator");
             }
         }
+
+
         // Summary:
         //   checks if a given string is an operator string by
         //   comparing to every element from the static opList

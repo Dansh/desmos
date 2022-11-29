@@ -13,36 +13,31 @@ namespace DesmosApp
 {
     public partial class Form1 : Form
     {
+
+        private ButtonGrid buttonGrid;
         public Form1()
         {
             InitializeComponent();
             
         }
 
-        public void InitButtonsGrid()
+        public ButtonGrid InitButtonGrid()
         {
+            int buttonSize = 10;
+            int amountX = 36;
+            int amountY = 20;
+            ButtonGrid buttonGrid = new ButtonGrid(amountX, amountY, buttonSize);
+
             int gridStartX = 200;
             int gridStartY = 80;
-            int buttonSize = 10;
-            for (int i = 0; i < 36; i++)
-            {
-                for (int j = 0; j < 20; j++)
-                {
-                    Button newButton = new Button();
-                    this.Controls.Add(newButton); // adding button to the current form
-                    newButton.FlatStyle = FlatStyle.Flat;
-                    newButton.BackgroundImage = Properties.Resources.whiteImg;
-                    newButton.FlatAppearance.BorderSize = 0;
-                    newButton.Size = new Size(buttonSize, buttonSize);
-                    newButton.Location = new Point(gridStartX + i*buttonSize, gridStartY + j*buttonSize);
-                    
-                }
-            }
+            buttonGrid.Draw(this, gridStartX, gridStartY);
+
+            return buttonGrid;            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            InitButtonsGrid();
+            buttonGrid = InitButtonGrid();
         }
 
         private void GoBtn_Click(object sender, EventArgs e)
@@ -50,10 +45,22 @@ namespace DesmosApp
             // getting and preparing input to be calculated
             string expStr = inputFunctionBox.Text;
             expStr = InputManager.RemoveWhiteSpaces(expStr);
+            expStr = InputManager.HandleParameters(expStr);
             expStr = Expression.InfixToPrefix(expStr);
-            Expression exp = Expression.BuildTree(expStr);
 
-            Console.WriteLine(exp.Interpret()); // calculating input expression
+            string originalExpStr = expStr;
+            for (int i = 0; i < buttonGrid.ButtonAmountRow; i++)
+            {
+                expStr = InputManager.ReplaceCharByString(originalExpStr, 'x', (i + 1).ToString());
+                Expression exp = Expression.BuildTree(expStr);
+                int answer = exp.Interpret(); // calculating input expression  
+                Console.WriteLine(expStr);
+                if (answer <= 26)
+                {
+                    buttonGrid.ColorButton(Color.Black, i, answer-1);
+                }                
+            }
+            
         }
     }
 }
