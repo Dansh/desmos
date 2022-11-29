@@ -1,0 +1,10 @@
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\bin\Debug\DesmosApp.exe.config
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\bin\Debug\DesmosApp.exe
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\bin\Debug\DesmosApp.pdb
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\obj\Debug\DesmosApp.csprojAssemblyReference.cache
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\obj\Debug\DesmosApp.Form1.resources
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\obj\Debug\DesmosApp.Properties.Resources.resources
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\obj\Debug\DesmosApp.csproj.GenerateResource.cache
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\obj\Debug\DesmosApp.csproj.CoreCompileInputs.cache
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\obj\Debug\DesmosApp.exe
+C:\Users\danda\source\repos\DesmosApp\DesmosApp\obj\Debug\DesmosApp.pdb
