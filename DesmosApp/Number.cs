@@ -20,7 +20,14 @@ namespace DesmosApp
 
         public override int GetLength()
         {
-            return 1;
+            int copy = number;
+            int counter = 0;
+            while (copy > 0)
+            {
+                copy /= 10;
+                counter++;
+            }
+            return counter + 1;
         }
 
         public override string ToString()

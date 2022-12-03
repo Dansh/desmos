@@ -37,11 +37,11 @@ namespace DesmosApp
 
 
         // Summary:
-        //   checks if a given string is an operator string by
-        //   comparing to every element from the static opList
-        //   which holds all the possible operators
+        //      checks if a given string is an operator string by
+        //      comparing to every element from the static opList
+        //      which holds all the possible operators
         // Returns:
-        //   the str given is an operator string
+        //      the str given is an operator string
         public static bool IsOperator(string str)
         {
             foreach (string opStr in opList)
@@ -56,23 +56,9 @@ namespace DesmosApp
 
         public override int GetLength()
         {
-            int sum = 1;
-            if (this.rightExpression.GetType() == typeof(Number))
-            {
-                sum++;
-            }
-            else
-            {
-                sum += this.rightExpression.GetLength();
-            }
-            if (this.leftExpression.GetType() == typeof(Number))
-            {
-                sum++;
-            }
-            else
-            {
-                sum += this.leftExpression.GetLength();
-            }
+            int sum = 2;
+            sum += leftExpression.GetLength();
+            sum += rightExpression.GetLength();
             return sum;
         }
 
@@ -80,5 +66,5 @@ namespace DesmosApp
         {
             return opStr;
         }
-    }   
+    }
 }

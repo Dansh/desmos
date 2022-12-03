@@ -14,51 +14,31 @@ namespace DesmosApp
     public partial class Form1 : Form
     {
 
-        private ButtonGrid buttonGrid;
         public Form1()
         {
             InitializeComponent();
             
         }
 
-        public ButtonGrid InitButtonGrid()
+
+        private void Form1_Load(object sender, System.EventArgs e)
         {
-            int buttonSize = 10;
-            int amountX = 36;
-            int amountY = 20;
-            ButtonGrid buttonGrid = new ButtonGrid(amountX, amountY, buttonSize);
-
-            int gridStartX = 200;
-            int gridStartY = 80;
-            buttonGrid.Draw(this, gridStartX, gridStartY);
-
-            return buttonGrid;            
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            buttonGrid = InitButtonGrid();
+            
         }
 
         private void GoBtn_Click(object sender, EventArgs e)
         {
-            // getting and preparing input to be calculated
-            string expStr = inputFunctionBox.Text;
-            expStr = InputManager.RemoveWhiteSpaces(expStr);
-            expStr = InputManager.HandleParameters(expStr);
-            expStr = Expression.InfixToPrefix(expStr);
+            UserInput input = new UserInput(inputFunctionBox.Text);
 
-            string originalExpStr = expStr;
-            for (int i = 0; i < buttonGrid.ButtonAmountRow; i++)
+            string saveStr = input.Str;
+            for (int i = 1; i <= 30; i++)
             {
-                expStr = InputManager.ReplaceCharByString(originalExpStr, 'x', (i + 1).ToString());
-                Expression exp = Expression.BuildTree(expStr);
-                int answer = exp.Interpret(); // calculating input expression  
-                Console.WriteLine(expStr);
-                if (answer <= 26)
-                {
-                    buttonGrid.ColorButton(Color.Black, i, answer-1);
-                }                
+                input.Str = saveStr;
+                input.HandleParameters();
+                input.ReplaceParameter('x', i.ToString());
+                input.PrepareForCalc();
+                Expression exp = Expression.BuildTree(input.Str);
+                Console.WriteLine(exp.Interpret());
             }
             
         }
