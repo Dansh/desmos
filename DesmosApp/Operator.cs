@@ -6,7 +6,7 @@ namespace DesmosApp
 {
     class Operator : Expression
     {
-        private static string[] opList = { "+", "-", "*", "/" };
+        private static string[] opList = { "+", "-", "*", "/", "^" };
         public readonly string opStr;
         public readonly Expression leftExpression;
         public readonly Expression rightExpression;
@@ -18,7 +18,7 @@ namespace DesmosApp
             this.opStr = opStr;
         }
 
-        public override int Interpret()
+        public override double Interpret()
         {
             switch (opStr)
             {
@@ -30,6 +30,8 @@ namespace DesmosApp
                     return leftExpression.Interpret() * rightExpression.Interpret();
                 case "/":
                     return leftExpression.Interpret() / rightExpression.Interpret();
+                case "^":
+                    return Math.Pow(leftExpression.Interpret(), rightExpression.Interpret());
                 default:
                     throw new Exception("Invalid Operator");
             }

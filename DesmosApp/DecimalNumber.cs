@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DesmosApp
 {
-    class Number : Expression
+    class DecimalNumber : Expression
     {
-        private readonly int number;
+        private readonly double number;
 
-        public Number(int number)
+        public DecimalNumber(double number)
         {
             this.number = number;
         }

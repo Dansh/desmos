@@ -6,7 +6,7 @@ namespace DesmosApp
 {
     abstract class Expression
     {
-        public abstract int Interpret();
+        public abstract double Interpret();
         public abstract int GetLength();
 
 
@@ -23,9 +23,12 @@ namespace DesmosApp
         {
             if (Operator.IsOperator(str[i].ToString()))
             {
-                Expression leftExpression = BuildTree(str, i + 2);
-                Expression rightExpression = BuildTree(str, i + leftExpression.GetLength() + 2);
-                return new Operator(leftExpression, rightExpression, str[i].ToString());
+                if (!(str[i] == '-' && Char.IsDigit(str[i+1])))
+                {
+                    Expression leftExpression = BuildTree(str, i + 2);
+                    Expression rightExpression = BuildTree(str, i + leftExpression.GetLength() + 2);
+                    return new Operator(leftExpression, rightExpression, str[i].ToString());
+                }                
             }
             string numStr = "";
             while (str[i] != ' ')
@@ -37,7 +40,11 @@ namespace DesmosApp
                     break;
                 }
             }
-            return new Number(int.Parse(numStr.ToString()));
+            if (str.Contains("."))
+            {
+                return new DecimalNumber(double.Parse(numStr));
+            }
+            return new Number(int.Parse(numStr));
         }
 
         public void PrintExpressionTree()

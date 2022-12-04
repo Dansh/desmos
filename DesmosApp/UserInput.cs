@@ -47,6 +47,7 @@ namespace DesmosApp
             char[] strArr = str.ToCharArray();
             str = string.Join(" ", strArr);
             ReplaceCharsByNums();
+            Console.WriteLine(str);
         }
 
 
@@ -82,11 +83,19 @@ namespace DesmosApp
             char currentChar = 'A';
             for (int i = 0; i < str.Length; i++)
             {
-                if (!Char.IsDigit(str[i]))
+                if (Operator.IsOperator(str[i].ToString()))
                 {
                     if (currentNumStr == "")
                     {
-                        throw new Exception("Syntex Error");
+                        if (str[i] == '-')
+                        {
+                            currentNumStr += str[i];
+                            continue;
+                        }
+                        else
+                        {
+                            throw new Exception("Syntex Error");
+                        }
                     }
                     charToIntDict[currentChar] = currentNumStr;
                     currentNumStr = "";
@@ -187,7 +196,7 @@ namespace DesmosApp
         //   takes every parameter in the string and simplfies it for the computer
         //   for example -
         //   3 + 3x -> 3 + 3 * x
-        public void HandleParameters()
+        public void HandleParameters() 
         {
             string newStr = "";
             for (int i = 0; i < str.Length; i++)
