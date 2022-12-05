@@ -94,7 +94,7 @@ namespace DesmosApp
                         }
                         else
                         {
-                            throw new Exception("Syntex Error");
+                            throw new InputSyntaxException();
                         }
                     }
                     charToIntDict[currentChar] = currentNumStr;
@@ -110,7 +110,7 @@ namespace DesmosApp
             }
             if (currentNumStr == "")
             {
-                throw new Exception("Syntex Error");
+                throw new InputSyntaxException();
             }
             charToIntDict[currentChar] = currentNumStr;
             newStr += currentChar;
@@ -132,6 +132,31 @@ namespace DesmosApp
                 if (char.IsLetterOrDigit(c))
                 {
                     result += c;
+                }
+
+                else if (c == '(')
+                {
+                    stack.Push(c);
+                }
+
+
+                else if (c == ')')
+                {
+                    while (stack.Count > 0
+                           && stack.Peek() != '(')
+                    {
+                        result += stack.Pop();
+                    }
+
+                    if (stack.Count > 0
+                        && stack.Peek() != '(')
+                    {
+                        throw new InputSyntaxException();
+                    }
+                    else
+                    {
+                        stack.Pop();
+                    }
                 }
                 else       
                 {

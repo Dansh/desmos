@@ -46,16 +46,29 @@ namespace DesmosApp
                 input.Str = saveStr;
                 input.HandleParameters();
                 input.ReplaceParameter('x', x.ToString());
-                input.PrepareForCalc();
-
-                Expression exp = Expression.BuildTree(input.Str);
-                double y = exp.Interpret();
-                
-                graphGrid.DrawPixel(x, (int)y, Color.FromArgb(48, 168, 255)); // draws the pixel on the grid                
+                try
+                {
+                    input.PrepareForCalc();
+                    Expression exp = Expression.BuildTree(input.Str);
+                    double y = exp.Interpret();
+                    graphGrid.DrawPixel(x, (int)y, Color.FromArgb(48, 168, 255)); // draws the pixel on the grid 
+                }
+                catch (Exception exp) 
+                {
+                    if (exp is InputSyntaxException || exp is FormatException)
+                    {
+                        MessageBox.Show("Syntex Error", "Unvalid syntex",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        inputFunctionBox.Text = "Please Use Some Good Syntax :)";
+                        break;
+                    }
+                    throw exp;
+                }                                               
+                               
             }
 
             
-            graphImgBox.Refresh();
+            graphGrid.PictureBox.Refresh();
             
         }
 
