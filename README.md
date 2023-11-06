@@ -1,2 +1,2 @@
 # desmos
-c# Win Form application for viewing graphs of math expressions
+A C# Win Form application for visualizing mathematical expressions with interactive graph plotting.
