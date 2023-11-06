@@ -16,3 +16,8 @@ Furthermore, it is also possible to visualize more intricate functions, includin
 <br/>
 <br/>
 <img src="https://i.ibb.co/85RkwYr/Whats-App-Image-2023-11-07-at-01-10-34-d4d670f3.jpg" alt="Whats-App-Image-2023-11-07-at-01-10-34-d4d670f3" border="0">
+
+
+<h1>Background</h1>
+I wanted to improve my OOP abilities and understanding so I looked for a cool Project to do. <br/>
+The idea of creating graphic calculator has always been intersting to me so I decided to go in this direction.
